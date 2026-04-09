@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Hero() {
   return (
     <section className="w-full bg-gray-100 py-24 text-center">
@@ -8,12 +10,12 @@ export default function Hero() {
         为全球华人提供高效、安全、合规的美国税务解决方案。
       </p>
 
-      <a
-        href="/taxsite-demo/contact"
+      <Link
+        href="/contact"
         className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
       >
         立即咨询
-      </a>
+      </Link>
     </section>
   );
 }
