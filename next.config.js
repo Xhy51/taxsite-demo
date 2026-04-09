@@ -4,7 +4,7 @@ const nextConfig = {
   output: 'export',
   basePath: '/taxsite-demo',
   assetPrefix: '/taxsite-demo',
-  trailingSlash: true,
+  trailingSlash: false,
 };
 
 module.exports = nextConfig;
