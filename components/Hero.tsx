@@ -9,7 +9,7 @@ export default function Hero() {
       </p>
 
       <a
-        href="/contact"
+        href="/taxsite-demo/contact"
         className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
       >
         立即咨询
