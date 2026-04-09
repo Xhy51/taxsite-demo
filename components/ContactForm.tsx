@@ -18,38 +18,27 @@ export default function ContactForm() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        alert('感谢您的咨询！');
-      } else {
-        alert('提交失败，请重试。');
-      }
-    } catch (error) {
-      alert('提交失败，请重试。');
-    }
+  const onSubmit = (data: FormData) => {
+    const subject = encodeURIComponent('网站咨询');
+    const body = encodeURIComponent(`姓名: ${data.name}\n邮箱: ${data.email}\n\n${data.message}`);
+    window.location.href = `mailto:henryhuea@aol.com?subject=${subject}&body=${body}`;
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <label className="block">姓名</label>
-        <input {...register('name')} className="w-full p-2 border" />
+        <label className="block" htmlFor="name">姓名</label>
+        <input id="name" {...register('name')} className="w-full p-2 border" />
         {errors.name && <p className="text-red-500">{errors.name.message}</p>}
       </div>
       <div>
-        <label className="block">邮箱</label>
-        <input {...register('email')} className="w-full p-2 border" />
+        <label className="block" htmlFor="email">邮箱</label>
+        <input id="email" type="email" {...register('email')} className="w-full p-2 border" />
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
       </div>
       <div>
-        <label className="block">消息</label>
-        <textarea {...register('message')} className="w-full p-2 border" rows={4} />
+        <label className="block" htmlFor="message">消息</label>
+        <textarea id="message" {...register('message')} className="w-full p-2 border" rows={4} />
         {errors.message && <p className="text-red-500">{errors.message.message}</p>}
       </div>
       <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">提交</button>

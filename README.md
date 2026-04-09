@@ -58,16 +58,24 @@ npm test
 
 ## 部署
 
+本项目已准备为 GitHub Pages 全静态发布。
+
 1. 推送到 GitHub 仓库。
-2. 使用 Netlify 自动部署：
-   - 连接 GitHub 仓库。
-   - 设置构建命令：`npm run build`。
-   - 设置发布目录：`.next`（Netlify 会自动处理 Next.js）。
-3. 或者手动部署到服务器。
+2. 在 `static` 分支或发布分支上运行：
+   ```bash
+   npm install
+   npm run export
+   ```
+3. `next export` 会生成 `out/` 目录，包含可直接部署的静态站点。
+4. 将 `out/` 目录内容部署到 GitHub Pages：
+   - 如果仓库使用 `gh-pages` 分支，可将 `out/` 内容推送到 `gh-pages`。
+   - 如果使用 `main` 或 `static` 分支的 `docs/` 目录，可将 `out/` 内容复制到 `docs/` 并推送该分支。
 
-### Netlify 配置
+### GitHub Pages 发布注意
 
-项目包含 `netlify.toml` 文件，用于自定义构建设置。如果需要，可以调整环境变量或重定向。
+- GitHub Pages 只支持静态文件，不支持 Next.js API 路由。
+- 本项目已经移除服务器端 API 路由，并改为静态邮件链接提交。
+- `README` 中的 `npm run export` 过程会生成最终的静态输出。
 
 ## 项目结构
 
